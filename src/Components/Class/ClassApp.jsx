@@ -9,11 +9,12 @@ export class ClassApp extends Component {
     correctCount: 0,
   };
   render() {
+    const { initialFishes } = this.props;
     return (
       <>
         <>
           <ClassScoreBoard />
-          <ClassGameBoard />
+          <ClassGameBoard initialFishes={initialFishes}/>
         </>
         {false && <ClassFinalScore />}
       </>

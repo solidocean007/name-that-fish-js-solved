@@ -2,11 +2,11 @@ import { FunctionalGameBoard } from "./FunctionalGameBoard";
 import { FunctionalScoreBoard } from "./FunctionalScoreBoard";
 import { FunctionalFinalScore } from "./FunctionalFinalScore";
 
-export function FunctionalApp() {
+export function FunctionalApp({ initialFishes }) {
   return (
     <>
       <FunctionalScoreBoard />
-      <FunctionalGameBoard />
+      <FunctionalGameBoard initialFishes={ initialFishes }/>
       {false && <FunctionalFinalScore />}
     </>
   );
