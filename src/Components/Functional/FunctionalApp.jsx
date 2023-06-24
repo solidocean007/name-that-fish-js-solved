@@ -8,10 +8,24 @@ export function FunctionalApp({ initialFishes }) {
     correctCount: 0,
     incorrectCount: 0,
   })
+
+  const handleScore = (userGuess, fishName) => {
+    const isCorrect = fishName === userGuess;
+    if(isCorrect){
+      setScore(prevScore => ({
+        ...prevScore, correctCount: prevScore.correctCount + 1,
+      }))
+    } else {
+      setScore((prevScore)=>({
+        ...prevScore, incorrectCount: prevScore.incorrectCount +1,
+      }))
+    }
+  }
+
   return (
     <>
       <FunctionalScoreBoard score={score}/>
-      <FunctionalGameBoard initialFishes={ initialFishes } setScore={setScore}/>
+      <FunctionalGameBoard initialFishes={ initialFishes } handleScore={handleScore}/>
       {false && <FunctionalFinalScore />}
     </>
   );

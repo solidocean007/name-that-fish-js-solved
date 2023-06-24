@@ -14,15 +14,22 @@ export class ClassApp extends Component {
   handleScore = (userGuess, fishName) => {
     const isCorrect = fishName === userGuess;
     if (isCorrect) {
-      this.setState((prevState) => ({
-        correctCount: prevState.score.correctCount + 1,
+      this.setState(prevState => ({
+        score: {
+          ...prevState.score,
+          correctCount: prevState.score.correctCount + 1,
+        }
       }));
     } else {
-      this.setState((prevState) => ({
-        incorrectCount: prevState.score.incorrectCount + 1,
+      this.setState(prevState => ({
+        score: {
+          ...prevState.score,
+          incorrectCount: prevState.score.incorrectCount + 1,
+        }
       }));
     }
   };
+  
 
   render() {
     const { initialFishes } = this.props;
