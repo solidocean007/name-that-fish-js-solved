@@ -5,16 +5,36 @@ import { ClassFinalScore } from "./ClassFinalScore";
 
 export class ClassApp extends Component {
   state = {
-    incorrectCount: 0,
-    correctCount: 0,
+    score: {
+      incorrectCount: 0,
+      correctCount: 0,
+    },
   };
+
+  handleScore = (userGuess, fishName) => {
+    const isCorrect = fishName === userGuess;
+    if (isCorrect) {
+      this.setState((prevState) => ({
+        correctCount: prevState.score.correctCount + 1,
+      }));
+    } else {
+      this.setState((prevState) => ({
+        incorrectCount: prevState.score.incorrectCount + 1,
+      }));
+    }
+  };
+
   render() {
     const { initialFishes } = this.props;
+    const { score } = this.state;
     return (
       <>
         <>
-          <ClassScoreBoard />
-          <ClassGameBoard initialFishes={initialFishes}/>
+          <ClassScoreBoard score={score} />
+          <ClassGameBoard
+            initialFishes={initialFishes}
+            handleScore={this.handleScore}
+          />
         </>
         {false && <ClassFinalScore />}
       </>
