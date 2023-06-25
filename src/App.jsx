@@ -21,6 +21,8 @@ const initialFishes = [
     url: Images.shark,
   },
 ];
+
+
 function App() {
   return (
     <div className="App">
@@ -28,7 +30,7 @@ function App() {
       <div className="split">
         <div className="left">
           <h3>Functional</h3>
-          <FunctionalApp initialFishes={initialFishes}/>
+          <FunctionalApp initialFishes={initialFishes} />
         </div>
         <div className="right">
           <h3>Class</h3>
