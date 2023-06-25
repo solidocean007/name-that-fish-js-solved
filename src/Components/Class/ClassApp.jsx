@@ -9,6 +9,13 @@ export class ClassApp extends Component {
       incorrectCount: 0,
       correctCount: 0,
     },
+  fish: this.props.initialFishes,
+  };
+
+  removeFish = (usedName) => {
+    this.setState(prevState => ({
+      fish: prevState.fish.filter(fish => fish.name !== usedName)
+    }));
   };
 
   handleScore = (userGuess, fishName) => {
@@ -20,6 +27,7 @@ export class ClassApp extends Component {
           correctCount: prevState.score.correctCount + 1,
         }
       }));
+      this.removeFish(userGuess)
     } else {
       this.setState(prevState => ({
         score: {
@@ -33,11 +41,11 @@ export class ClassApp extends Component {
 
   render() {
     const { initialFishes } = this.props;
-    const { score } = this.state;
+    const { score, fish } = this.state;
     return (
       <>
         <>
-          <ClassScoreBoard score={score} />
+          <ClassScoreBoard score={score} fish={fish} />
           <ClassGameBoard
             initialFishes={initialFishes}
             handleScore={this.handleScore}
