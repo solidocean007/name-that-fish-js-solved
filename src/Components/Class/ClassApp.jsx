@@ -9,49 +9,48 @@ export class ClassApp extends Component {
       incorrectCount: 0,
       correctCount: 0,
     },
-  fish: this.props.initialFishes,
+    fish: this.props.initialFishes,
   };
 
   removeFish = (usedName) => {
-    this.setState(prevState => ({
-      fish: prevState.fish.filter(fish => fish.name !== usedName)
+    this.setState((prevState) => ({
+      fish: prevState.fish.filter((fish) => fish.name !== usedName),
     }));
   };
 
   handleScore = (userGuess, fishName) => {
-    const isCorrect = fishName === userGuess;
+    const isCorrect = fishName.toLocaleLowerCase() === userGuess.toLocaleLowerCase();
     if (isCorrect) {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         score: {
           ...prevState.score,
           correctCount: prevState.score.correctCount + 1,
-        }
+        },
       }));
-      this.removeFish(userGuess)
     } else {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         score: {
           ...prevState.score,
           incorrectCount: prevState.score.incorrectCount + 1,
-        }
+        },
       }));
     }
+    this.removeFish(fishName);
   };
-  
 
   render() {
-    const { initialFishes } = this.props;
     const { score, fish } = this.state;
+    const gameEnd = fish.length === 0;
     return (
       <>
         <>
-          <ClassScoreBoard score={score} fish={fish} />
-          <ClassGameBoard
-            initialFishes={initialFishes}
+          {!gameEnd && <ClassScoreBoard score={score} fish={fish} />}
+          {!gameEnd && <ClassGameBoard
+            fish={fish}
             handleScore={this.handleScore}
-          />
+          />}
         </>
-        {false && <ClassFinalScore />}
+        {gameEnd && <ClassFinalScore score={score} />}
       </>
     );
   }
