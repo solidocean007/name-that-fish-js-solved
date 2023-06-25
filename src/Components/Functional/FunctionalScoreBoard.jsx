@@ -1,9 +1,7 @@
 import "./styles/score-board.css";
 //  Where the score is presented
 
-
 export function FunctionalScoreBoard({ fish, score }) {
-  console.log(fish);
   const { incorrectCount, correctCount } = score;
   return (
     <div id="score-board">
