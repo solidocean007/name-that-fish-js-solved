@@ -19,7 +19,8 @@ export class ClassApp extends Component {
   };
 
   handleScore = (userGuess, fishName) => {
-    const isCorrect = fishName.toLocaleLowerCase() === userGuess.toLocaleLowerCase();
+    const isCorrect =
+      fishName.toLocaleLowerCase() === userGuess.toLocaleLowerCase();
     if (isCorrect) {
       this.setState((prevState) => ({
         score: {
@@ -45,10 +46,9 @@ export class ClassApp extends Component {
       <>
         <>
           {!gameEnd && <ClassScoreBoard score={score} fish={fish} />}
-          {!gameEnd && <ClassGameBoard
-            fish={fish}
-            handleScore={this.handleScore}
-          />}
+          {!gameEnd && (
+            <ClassGameBoard fish={fish} handleScore={this.handleScore} />
+          )}
         </>
         {gameEnd && <ClassFinalScore score={score} />}
       </>

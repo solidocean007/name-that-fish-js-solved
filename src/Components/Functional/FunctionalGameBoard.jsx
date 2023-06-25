@@ -4,7 +4,7 @@ import "./styles/game-board.css";
 export function FunctionalGameBoard({ fish, handleScore }) {
   const [userInput, setUserInput] = useState("");
   let nextFishToName = null;
-  
+
   if (fish && fish.length > 0) {
     nextFishToName = fish[0];
   }
@@ -40,4 +40,3 @@ export function FunctionalGameBoard({ fish, handleScore }) {
     </div>
   );
 }
-

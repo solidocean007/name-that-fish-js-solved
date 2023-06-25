@@ -1,7 +1,6 @@
 import { Component } from "react";
 
 export class ClassFinalScore extends Component {
-
   render() {
     const { correctCount, incorrectCount } = this.props.score;
     const totalCount = correctCount + incorrectCount;

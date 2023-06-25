@@ -22,7 +22,6 @@ const initialFishes = [
   },
 ];
 
-
 function App() {
   return (
     <div className="App">
@@ -34,7 +33,7 @@ function App() {
         </div>
         <div className="right">
           <h3>Class</h3>
-          <ClassApp initialFishes={initialFishes}/>
+          <ClassApp initialFishes={initialFishes} />
         </div>
       </div>
     </div>

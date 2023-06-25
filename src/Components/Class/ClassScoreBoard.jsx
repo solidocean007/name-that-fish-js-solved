@@ -2,9 +2,8 @@ import { Component } from "react";
 import "./styles/score-board.css";
 
 export class ClassScoreBoard extends Component {
-
   render() {
-    const { incorrectCount,  correctCount} = this.props.score;
+    const { incorrectCount, correctCount } = this.props.score;
     const fish = this.props.fish;
     return (
       <div id="score-board">
