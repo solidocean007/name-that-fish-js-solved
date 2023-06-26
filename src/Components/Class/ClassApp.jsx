@@ -5,17 +5,12 @@ import { ClassFinalScore } from "./ClassFinalScore";
 
 export class ClassApp extends Component {
   state = {
+    fishIndex: 0,
     score: {
       incorrectCount: 0,
       correctCount: 0,
     },
     fish: this.props.initialFishes,
-  };
-
-  removeFish = (usedName) => {
-    this.setState((prevState) => ({
-      fish: prevState.fish.filter((fish) => fish.name !== usedName),
-    }));
   };
 
   handleScore = (userGuess, fishName) => {
@@ -36,20 +31,19 @@ export class ClassApp extends Component {
         },
       }));
     }
-    this.removeFish(fishName);
+    this.setState({fishIndex: this.state.fishIndex + 1});
   };
 
   render() {
-    const { score, fish } = this.state;
-    const gameEnd = fish.length === 0;
+    const { score, fish, fishIndex } = this.state;
+    const gameEnd = fishIndex === 4;
+    const fishLeft = fish.map((el) => el.name).slice(fishIndex);
     return (
       <>
-        <>
-          {!gameEnd && <ClassScoreBoard score={score} fish={fish} />}
-          {!gameEnd && (
-            <ClassGameBoard fish={fish} handleScore={this.handleScore} />
-          )}
-        </>
+        {!gameEnd && <ClassScoreBoard score={score} fishLeft={fishLeft} />}
+        {!gameEnd && (
+          <ClassGameBoard fishData={fish[fishIndex]} handleScore={this.handleScore} />
+        )}
         {gameEnd && <ClassFinalScore score={score} />}
       </>
     );

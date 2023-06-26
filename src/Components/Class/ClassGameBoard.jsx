@@ -4,27 +4,22 @@ import "./styles/game-board.css";
 export class ClassGameBoard extends Component {
   state = { userInput: "" };
   render() {
-    const { fish } = this.props;
+    const { fishData } = this.props;
     const { handleScore } = this.props;
 
-    let nextFishToName = null;
-
-    if (fish && fish.length > 0) {
-      nextFishToName = fish[0];
-    }
     return (
       <div id="game-board">
-        {nextFishToName && (
+        {fishData && (
           <>
             <div id="fish-container">
-              <img src={nextFishToName.url} alt={nextFishToName.name} />
+              <img src={fishData.url} alt={fishData.name} />
             </div>
             <form
               id="fish-guess-form"
               onSubmit={(e) => {
                 e.preventDefault();
                 this.setState({ userInput: "" });
-                handleScore(this.state.userInput, nextFishToName.name);
+                handleScore(this.state.userInput, fishData.name);
               }}
             >
               <label htmlFor="fish-guess">What kind of fish is this?</label>

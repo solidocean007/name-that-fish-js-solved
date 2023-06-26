@@ -4,14 +4,14 @@ import "./styles/score-board.css";
 export class ClassScoreBoard extends Component {
   render() {
     const { incorrectCount, correctCount } = this.props.score;
-    const fish = this.props.fish;
+    const fishLeft = this.props.fishLeft;
     return (
       <div id="score-board">
         <div>Incorrect 🔻: {incorrectCount}</div>
         <div id="choices-left">
-          {fish.map((fish) => (
-            <div key={fish.name} className="choice">
-              {fish.name}
+          {fishLeft.map((item) => (
+            <div key={item} className="choice">
+              {item}
             </div>
           ))}
         </div>
