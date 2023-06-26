@@ -1,26 +1,20 @@
 import { useState } from "react";
 import "./styles/game-board.css";
 
-export function FunctionalGameBoard({ fish, handleScore }) {
+export function FunctionalGameBoard({ fishData, handleScore }) {
   const [userInput, setUserInput] = useState("");
-  let nextFishToName = null;
-
-  if (fish && fish.length > 0) {
-    nextFishToName = fish[0];
-  }
-
   return (
     <div id="game-board">
-      {nextFishToName && (
+      {fishData && (
         <>
           <div id="fish-container">
-            <img src={nextFishToName.url} alt={nextFishToName.name} />
+            <img src={fishData.url} alt={fishData.name} />
           </div>
           <form
             id="fish-guess-form"
             onSubmit={(e) => {
               e.preventDefault();
-              handleScore(userInput, nextFishToName.name);
+              handleScore(userInput, fishData.name);
               setUserInput("");
             }}
           >

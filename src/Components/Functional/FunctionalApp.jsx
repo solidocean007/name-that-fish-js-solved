@@ -4,6 +4,7 @@ import { FunctionalFinalScore } from "./FunctionalFinalScore";
 import { useState } from "react";
 
 export function FunctionalApp({ initialFishes }) {
+  const [fishIndex, setFishIndex] = useState(0);
   const [fish, setFish] = useState(initialFishes); // Create fish state which is an array of fish objects.
   const [score, setScore] = useState({
     // Create score state which is an object of 2 different counts.
@@ -11,13 +12,9 @@ export function FunctionalApp({ initialFishes }) {
     incorrectCount: 0,
   });
 
-  // create function that removes the fish object.
-  const removeFish = (usedName) => {
-    const newFishList = fish.filter((fish) => fish.name !== usedName);
-    setFish(newFishList);
-  };
+  const fishLeft = fish.map((el)=> el.name).slice(fishIndex);
 
-  const gameEnd = fish.length === 0;
+  const gameEnd = fishIndex === 4;
 
   const handleScore = (userGuess, fishName) => {
     // This is called on the users input form on FunctionalGameBoard.
@@ -34,14 +31,14 @@ export function FunctionalApp({ initialFishes }) {
         incorrectCount: prevScore.incorrectCount + 1,
       }));
     }
-    removeFish(fishName);
+    setFishIndex(fishIndex + 1);
   };
 
   return (
     <>
-      {!gameEnd && <FunctionalScoreBoard fish={fish} score={score} />}
+      {!gameEnd && <FunctionalScoreBoard fishLeft={fishLeft} score={score} />}
       {!gameEnd && (
-        <FunctionalGameBoard fish={fish} handleScore={handleScore} />
+        <FunctionalGameBoard fishData={initialFishes[fishIndex]} handleScore={handleScore} />
       )}
       {gameEnd && <FunctionalFinalScore score={score} />}
     </>
